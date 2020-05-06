@@ -3,7 +3,7 @@
 
     <head>
         <meta charset="utf-8">
-        <title>floody buddy</title>
+        <title><h2>floody buddy</h2></title>
         <link rel="stylesheet" href="styles.css">
     </head>
 
@@ -11,19 +11,43 @@
         <div class="wrapper">
             
           <div class="box1">
-            <div class="child1">logo</div>
+            <div class="child1">
+              <img src="./assets/ficon.png" alt="ATX Map" width="90" height="90">
+            </div>
             <div class="child2">floody buddy</div>
+            <div class="child3">
+                <form id="sign_up_form" action="/action_page.php">
+                  <label for="newuser"></label>username
+                  <input type="text" id="newuser" name="enter username" value="choose username"><br><br>
+                  <label for="newpsswrd"></label>password
+                  <input type="password" id="newpsswrd" name="newpsswrd" value="choose password"><br><br>
+                  <input type="submit" value="create account">
+                </form>
+            </div>
+            <div class="child4">
+                <form id="sign_in_form" action="/action_page.php">
+                  <label for="username"></label>sign in
+                  <input type="text" id="username" name="enter username" value="username"><br><br>
+                  <label for="psswrd"></label>password
+                  <input type="password" id="psswrd" name="psswrd" value="choose password"><br><br>
+                  <input type="submit" value="sign in"><br><br>
+                </form>
+            </div>
           </div>
-            
-          <div class="box2"> 
-            <div class="child3">sign up</div>
-            <div class="child4">login</div>
-          </div>  
-            
-          <div class="box3">weather</div>
-          <div class="box4">map</div>
+          <div class="box2"> nav hide</div>  
+          <div class="box3">
+            <div class="weather_app">
+                <script type="text/javascript" src="https://widgets-viewer.climacell.co/v1/sdk.js"></script>
+                <div class="climacell-widget" data-apikey="bPK0HuoG8AxZAKae0jqPSu4ZyHxhxOKf" data-type="nowcast" data-location-name="280 Summer Street, Boston, MA 02210, USA" data-location-lon="-71.04974909999999" data-location-lat="42.3502782" data-size-mode="small" data-font-color="#4a90e2" data-background-color="#ffffff" data-font-family="georgia" data-weather-params="temp:F,precipitation:in/hr" data-precipitation-timeline="true" data-allow-users-enter-address="true"></div>
+            </div>
+              
+          </div>
+          <div class="box4">                
+              <img src="./assets/floody_map.png" alt="ATX Map" width="700" height="500">
+          </div>
           <div class="box5">location cards</div>
           <div class="box6">footer</div>
+         
         </div>
 
 

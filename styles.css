@@ -11,7 +11,14 @@
   grid-row-start: 1; 
   grid-row-end: 2; 
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-areas: 
+  "a b b b b . c c c d d d"
+  "a b b b b . c c c d d d"
+  "a b b b b . c c c d d d"
+  "a b b b b . c c c d d d"
+  "a b b b b . c c c d d d";
+  background-color: brown;   
 }
 
 .box2 { 
@@ -20,7 +27,8 @@
   grid-row-start: 2; 
   grid-row-end: 2; 
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  background-color: palevioletred;  
+/*  grid-template-columns: repeat(2, 1fr);*/
 }
 
 .box3 { 
@@ -43,7 +51,7 @@
   grid-column-end: 5; 
   grid-row-start: 4; 
   grid-row-end: 5; 
-  background-color: aliceblue;   
+  background-color: yellowgreen;   
 }
 .box6 { 
   grid-column-start: 1;
@@ -54,28 +62,21 @@
 }
 
 .child1 {
-    width 50px;
-    height 50px;
+    grid-area: a;
     background-color: aqua
 }
 
 .child2 {
-    width 50px;
-    height 50px;
+    grid-area: b;
     background-color: blueviolet
-    
 }
 
 .child3 {
-    width 50px;
-    height 50px;
+    grid-area: c;
     background-color:bisque
-    
 }
 
 .child4 {
-    width 50px;
-    height 50px;
+    grid-area: d;
     background-color: aquamarine
-    
 }

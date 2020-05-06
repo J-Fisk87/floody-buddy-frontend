@@ -26,16 +26,19 @@ function fetchGauges() {
 };
 
 function persistUser(user) {
-    console.log(user)
+    let id = user.id
     fetch( usersUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json"
       },
-        body: JSON.stringify(user)
+        body: JSON.stringify({name: user.name, password: user.password})
+    }).then(r => r.json())
+    .then(data => {
+        console.log(data)
     })
-};
+}; 
 //Helper Methods
 
 //sign in and sign up
@@ -48,7 +51,6 @@ function userLogin(c) {
         users.forEach(user=> { 
             if (user.name === e.target[0].value && user.password === e.target[1].value){
                 collapseHead()
-                currentUser = user
             }   
         })
        alert("enserio guey... check name and password")

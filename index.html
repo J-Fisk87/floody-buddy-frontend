@@ -10,27 +10,52 @@
 <body>
     <header class="header">
         <section class="masthead" role="img" aria-label="Image Description">
+            <div id="fbicon">
+                <img src="./assets/ficon.png" alt="ATX Map"></div>
             <h2>
                 floody buddy
             </h2>
+
+            <span>
+                <form id="sign_in_form" action="/action_page.php">
+                    <label for="username"></label>sign in
+                    <input type="text" id="username" name="enter username" value="username"><br><br>
+                    <label for="psswrd"></label>password
+                    <input type="password" id="psswrd" name="psswrd" value="choose password"><br><br>
+                    <input type="submit" value="sign in"><br><br>
+                </form>
+                
+                <form id="sign_up_form" action="/action_page.php">
+                    <label for="newuser"></label>username
+                    <input type="text" id="newuser" name="enter username" value="choose username"><br><br>
+                    <label for="newpsswrd"></label>password
+                    <input type="password" id="newpsswrd" name="newpsswrd" value="choose password"><br><br>
+                    <label for="cnfrmpsswrd"></label>confirm password
+                    <input type="password" id="cnfrmpsswrd" name="cnfrmpsswrd" value="choose password"><br><br>
+                    <input type="submit" value="create account">
+                </form>
+            </span>
         </section>
     </header>
     <div class="main">
         <span>
-        <div class="weather_app">
-            <script type="text/javascript" src="https://widgets-viewer.climacell.co/v1/sdk.js"></script>
-            <div class="climacell-widget" data-apikey="bPK0HuoG8AxZAKae0jqPSu4ZyHxhxOKf" data-type="nowcast" data-location-name="280 Summer Street, Boston, MA 02210, USA" data-location-lon="-71.04974909999999" data-location-lat="42.3502782" data-size-mode="small" data-font-color="#4a90e2" data-background-color="#ffffff" data-font-family="georgia" data-weather-params="temp:F,precipitation:in/hr" data-precipitation-timeline="true" data-allow-users-enter-address="true"></div>
-        </div>
-            
-            
+            <div class="weather_app">
+                <script type="text/javascript" src="https://widgets-viewer.climacell.co/v1/sdk.js"></script>
+                <div class="climacell-widget" data-apikey="bPK0HuoG8AxZAKae0jqPSu4ZyHxhxOKf" data-type="nowcast" data-location-name="280 Summer Street, Boston, MA 02210, USA" data-location-lon="-71.04974909999999" data-location-lat="42.3502782" data-size-mode="small" data-font-color="#4a90e2" data-background-color="#ffffff" data-font-family="georgia" data-weather-params="temp:F,precipitation:in/hr" data-precipitation-timeline="true" data-allow-users-enter-address="true"></div>
+            </div>
+
+
             <div>
                 <img src="./assets/map.jpeg" alt="ATX Map">
             </div>
 
-            </span>
+        </span>
     </div>
 
-    <main id="locations">
+    <main>
+        <ul id="locations">
+        
+        </ul>
 
     </main>
 
@@ -38,6 +63,4 @@
 
 
     <script src="./src/index.js"></script>
-</body>
-
-</html>
+</body></html>

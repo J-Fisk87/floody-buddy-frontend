@@ -5,6 +5,7 @@
         <meta charset="utf-8">
         <title><h2>floody buddy</h2></title>
         <link rel="stylesheet" href="styles.css">
+        <style> area{color:blue}</style>
     </head>
 
     <body>
@@ -44,7 +45,7 @@
           </div>
           <div class="box3"> nav hide</div>
           <div class="box4">                
-              <img src="./assets/floody_map.png" alt="ATX Map" usemap="#floodmap">
+              <img id="map" src="./assets/floody_map.png" alt="ATX Map" usemap="#floodmap">
           </div>
           <div class="box5">location cards</div>
           <div class="box6">footer</div>
@@ -58,9 +59,12 @@
     <script src="./src/map.js"></script>
 
     <!-- Begin area map code --> 
-    <map name="floodmap">
-        <area shape="circle" coords="50,50,10">
+    <map id="clickmap" name="floodmap">
+        <area shape="circle" coords="120,200,50" onclick="doThing(event)">
     </map>
+
+    <!-- End are map code -->
+    
 
     </body>
 </html>

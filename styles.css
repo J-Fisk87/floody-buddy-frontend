@@ -73,3 +73,8 @@ button:focus {
 }
 
 HTML <section class="masthead"role="img"aria-label="Image Description" > <h1 > The Hero Generator </h1 > <button > When a hero comes along </button > </section >
+
+#fbicon {
+    height: 20;
+    width: 20;
+}

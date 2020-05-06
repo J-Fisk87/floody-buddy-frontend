@@ -1,10 +1,12 @@
+
+
 // Global Constants
 let url = "http://localhost:3000"
 let usersUrl = `${url}/users`
 let gaugesUrl = `${url}/gauges`
 let users;
-let newUser;
 let tryAgain;
+let currentUser;
 
 
 // DomContendLoaded
@@ -20,9 +22,20 @@ function fetchUsers() {
 };
 
 function fetchGauges() {
-    fetch(gaugesUrl).then(r => r.json()).then(g => console.log(g))
+    fetch(gaugesUrl).then(r => r.json()).then(g => gauges = g)
 };
 
+function persistUser(user) {
+    console.log(user)
+    fetch( usersUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+        body: JSON.stringify(user)
+    })
+};
 //Helper Methods
 
 //sign in and sign up
@@ -35,6 +48,7 @@ function userLogin(c) {
         users.forEach(user=> { 
             if (user.name === e.target[0].value && user.password === e.target[1].value){
                 collapseHead()
+                currentUser = user
             }   
         })
        alert("enserio guey... check name and password")
@@ -56,6 +70,8 @@ function userLogin(c) {
             }
         });
         users.push(newUser)
+        persistUser(newUser)
+        currentUser = newUser
     })
 };
 

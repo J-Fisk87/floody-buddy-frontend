@@ -7,6 +7,7 @@ let users;
 let tryAgain;
 let currentUser;
 let gauges;
+let z;
 
 
 // DomContendLoaded
@@ -48,35 +49,39 @@ function userLogin(c) {
     let signIn = document.getElementById("sign_in_form")
     signIn.addEventListener('submit', (e) => {
         e.preventDefault();
-        users.forEach(user=> { 
-            if (user.name === e.target[0].value && user.password === e.target[1].value){
-                collapseHead()
-            }   
+        
+        users.find(user => user.name === e.target[0].value) ?
+        succesfulSignIn(e) : alert("enserio guey... check name and password") 
         })
-       alert("enserio guey... check name and password")
-    });
+    
 
     let signUp = document.getElementById("sign_up_form")
     signUp.addEventListener('submit', (e) => {
         e.preventDefault();
-        users.forEach(user => {
-            if (user.name === e.target[0].value) {
-                alert("not good enough.")
-            } else {
-                let id = nextId()
-                newUser = {
-                    id: id,
-                    name: e.target[0].value,
-                    password: e.target[1].value
-                }
-            }
-        });
-        users.push(newUser)
-        persistUser(newUser)
-        currentUser = newUser
+        users.find(user => user.name === e.target[0].value) ? alert("this user already exists") : persist(e)    
     })
 };
 
+function succesfulSignIn(e) {
+    console.log(e)
+    currentUser = e.target[0].value
+    collapseHead()
+    alert("you are logged in!")
+    
+};
+
+//stage persist of user
+function persist(e){
+    let id = nextId()
+    let newUser = {
+        id: id,
+        name: e.target[0].value,
+        password: e.target[1].value
+    }  
+        users.push(newUser)
+        currentUser = newUser
+        persistUser(newUser)
+};
 
 //!!add if statement to confirm current user. add info for user
 function userInfo(username) {
@@ -100,3 +105,11 @@ function nextId() {
 function collapseHead(){
     console.log("please collapse mr log")
 }
+
+//function checkUnique() {
+//   users = users.filter(onlyUnique)
+//}
+//
+//function onlyUnique(value, index, self) { 
+//    return self.indexOf(value) === index;
+//}

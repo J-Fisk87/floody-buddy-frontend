@@ -1,8 +1,21 @@
+html {
+   margin: 0px;
+   height: 100%;
+   width: 100%;
+}
+
+body {
+   margin: 0px;
+   min-height: 100%;
+   width: 100%;
+}
+
 .wrapper {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: minmax(100px, auto);
-  grid-row-gap: 10px;    
+  grid-row-gap: 10px;   
+  background-color: rgb(225, 245, 247, .8);  
 }
 
 .box1 { 
@@ -25,40 +38,40 @@
   "a b b b b . c c c d d d"   
   "a b b b b . c c c d d d"
   "a b b b b . c c c d d d";
-  background-color: brown;   
+  background-color: rgb(225, 245, 247, .8);    
 }
 
 .box2 { 
   grid-column-start: 2; 
-  grid-column-end: 5; 
+  grid-column-end: 4; 
   grid-row-start: 2; 
   grid-row-end: 2; 
   display: grid;
-  background-color: palevioletred;  
+  align-self: left;    
+ 
 /*  grid-template-columns: repeat(2, 1fr);*/
 }
 
 .box3 { 
-  grid-column-start: 1; 
-  grid-column-end: 2; 
-  grid-row-start: 2; 
+  grid-column-start: 4; 
+  grid-column-end: 6; 
+  grid-row-start: 3; 
   grid-row-end: 4; 
-  background-color: bisque;    
+  
 }
 
 .box4 { 
   grid-column-start: 2;
-  grid-column-end: 5; 
+  grid-column-end: 4; 
   grid-row-start: 3; 
   grid-row-end: 4;
-  background-color: cornflowerblue;   
+   
 }
 .box5 { 
   grid-column-start: 1;
-  grid-column-end: 5; 
-  grid-row-start: 4; 
-  grid-row-end: 5; 
-  background-color: powderblue;   
+  grid-column-end: 2; 
+  grid-row-start: 3; 
+  grid-row-end: 3; 
   grid-auto-flow: column;
   grid-auto-columns: 300px 100px;    
 }
@@ -67,51 +80,46 @@
   grid-column-end: 5; 
   grid-row-start: 5; 
   grid-row-end: 6;
-  background-color: blanchedalmond; 
+  background-color: rgb(225, 245, 247, .8);  
 }
-
-/*
-.loca {
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-areas: 
-  "aa aa . ee"
-  "bb bb dd dd"
-  "cc cc dd dd"
-  "ff ff ff ff";
-}
-*/
 
 .child1 {
     grid-area: a;
-    background-color: aqua;
+    align-self: center
 }
 
 .child2 {
     grid-area: b;
-    background-color: blueviolet;
+    font-family: monospace;
+    font-size-adjust: auto;
+    font-weight: 400;
+    align-self: center
+    
 }
 
 .child3 {
     grid-area: c;
-    background-color:bisque;
+    justify-self: end;
 }
 
 .child4 {
     grid-area: d;
-    background-color: aquamarine;
+    justify-self: end;
 }
 
 .c1 {
     grid-area: aa;
+    justify-self:left;
 }
 
 .c2 {
     grid-area: bb;
+    justify-self:left;  
 }
 
 .c3 {
     grid-area: cc;
-}
+    justify-self:left; }
 
 .c4 {
     grid-area: dd;
@@ -119,34 +127,56 @@
 
 .c5 {
     grid-area: ee;
+    justify-self: center;
 }
 
 .c6 {
     grid-area: ff;
+    justify-self:left;
+}
+
+.panic {
+    display: flex;
 }
 
 .loca {
    width: 300px;
    height: 200px;
+    margin: 10px;
+    margin-left: 20px;
+    padding-top: 20px;
+    padding-right: 10px;
+    padding-left: 21px;
+    justify-self: right;
    
    border-radius: 0.75rem;
    box-shadow:  0 22px 70px 4px rgba(0,0,0,0.56), 0 0 0 1px rgba(0, 0, 0, 0.3);
    
-   background: rgb(247, 141, 20, .4);
+   background: rgb(173, 47, 104, .);
    
    display: grid;
 /*   grid-template-columns: 40% auto;*/
-   color: white;
+   color: dimgrey;
    
-   align-items: center;
+/*   align-items: right;*/
    
    will-change: transform;
    transition: transform 0.25s cubic-bezier(0.4, 0.0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0.0, 0.2, 1);
     
    grid-template-columns: repeat(4, 1fr);
    grid-template-areas: 
-   "aa aa . ee"
+   "aa aa aa dd"
    "bb bb bb dd"
    "cc cc cc dd"
-   "ff ff ff ff";
+   "ff ff ff ee";
+}
+
+.map {
+    max-width: 100%;
+    height: auto;
+}
+
+.weather_app {
+    max-width: 100%;
+/*    height: auto;*/
 }

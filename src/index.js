@@ -53,14 +53,13 @@ function persistUser(user) {
 };
 
 function removeLocation(e) {
-    console.log("remove location")
         fetch( `${userGaugesUrl}/${userGaugeId}`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
             "Accept": "application/json"
           },
-            body: JSON.stringify(console.log("yep"))
+            body: JSON.stringify()
         }).then(r => r.json())
         .then(data => {
             console.log(data)
@@ -175,6 +174,7 @@ function closeCard() {
 //find userGauge id
 function findUserGauge(e) {
     let it = parseInt(e.target.id)
+    console.log(e.target.id)
     userGaugeId = userGauges.find(gge => (gge.gauge_id === it && gge.user_id === currentUser.id)).id;
 }
 

@@ -5,6 +5,7 @@
         <meta charset="utf-8">
         <title><h2>floody buddy</h2></title>
         <link rel="stylesheet" href="styles.css">
+        <style> area{color:blue}</style>
     </head>
 
     <body>
@@ -44,7 +45,7 @@
           </div>
           <div class="box3"> nav hide</div>
           <div class="box4">                
-              <img src="./assets/floody_map.png" alt="ATX Map" >
+              <img id="map" src="./assets/floody_map.png" alt="ATX Map" usemap="#floodmap">
           </div>
           <div class="box5">location cards</div>
           <div class="box6">footer</div>
@@ -56,5 +57,49 @@
 
     <script src="./src/index.js"></script>
     <script src="./src/map.js"></script>
+
+    <!-- Begin area map code --> 
+    <map id="clickmap" name="floodmap">
+        <area shape="circle" coords="116,197,15" onclick="doThing(event)">
+        <area shape="circle" coords="427,89,15" onclick="doThing(event)">
+        <area shape="circle" coords="456,150,15" onclick="doThing(event)">
+        <area shape="circle" coords="515,190,15" onclick="doThing(event)">
+        <area shape="circle" coords="473,260,15" onclick="doThing(event)">
+        <area shape="circle" coords="563,219,15" onclick="doThing(event)">
+        <area shape="circle" coords="480,217,15" onclick="doThing(event)">
+        <area shape="circle" coords="407,234,15" onclick="doThing(event)">
+        <area shape="circle" coords="433,245,15" onclick="doThing(event)">
+        <area shape="circle" coords="374,263,15" onclick="doThing(event)">
+
+        <!-- that's 10 -->
+
+        <area shape="circle" coords="252,238,15" onclick="doThing(event)">
+        <area shape="circle" coords="424,271,15" onclick="doThing(event)">
+        <area shape="circle" coords="530,295,15" onclick="doThing(event)">
+        <area shape="circle" coords="379,295,15" onclick="doThing(event)">
+        <area shape="circle" coords="322,300,15" onclick="doThing(event)">
+        <area shape="circle" coords="229,319,15" onclick="doThing(event)">
+        <area shape="circle" coords="157,368,15" onclick="doThing(event)">
+        <area shape="circle" coords="280,360,15" onclick="doThing(event)">
+        <area shape="circle" coords="339,345,15" onclick="doThing(event)">
+        <area shape="circle" coords="443,407,15" onclick="doThing(event)">
+
+        <!-- that's 10 more -->
+
+        <area shape="circle" coords="509,425,15" onclick="doThing(event)">
+        <area shape="circle" coords="684,431,15" onclick="doThing(event)">
+        <area shape="circle" coords="96,470,15" onclick="doThing(event)">
+        <area shape="circle" coords="151,457,15" onclick="doThing(event)">
+        <area shape="circle" coords="273,459,15" onclick="doThing(event)">
+        <area shape="circle" coords="298,528,15" onclick="doThing(event)">
+
+        <!-- and six more -->
+
+
+    </map>
+
+    <!-- End area map code -->
+    
+
     </body>
 </html>

@@ -71,7 +71,7 @@ body {
   grid-column-start: 1;
   grid-column-end: 2; 
   grid-row-start: 3; 
-  grid-row-end: 3; 
+  grid-row-end: 5; 
   grid-auto-flow: column;
   grid-auto-columns: 300px 100px;    
 }
@@ -109,20 +109,22 @@ body {
 
 .c1 {
     grid-area: aa;
-    justify-self:left;
+    justify-self: flex-start;
 }
 
 .c2 {
     grid-area: bb;
-    justify-self:left;  
+    justify-self: flex-start;
 }
 
 .c3 {
     grid-area: cc;
-    justify-self:left; }
+    justify-self: flex-start;
+}
 
 .c4 {
     grid-area: dd;
+    justify-self: flex-end;  
 }
 
 .c5 {
@@ -132,6 +134,11 @@ body {
 
 .c6 {
     grid-area: ff;
+    justify-self: flex-end;  
+}
+
+.c7 {
+    grid-area: gg;
     justify-self:left;
 }
 
@@ -144,7 +151,7 @@ body {
    height: 200px;
     margin: 10px;
     margin-left: 20px;
-    padding-top: 20px;
+    padding-top: 10px;
     padding-right: 10px;
     padding-left: 21px;
     justify-self: right;
@@ -163,12 +170,13 @@ body {
    will-change: transform;
    transition: transform 0.25s cubic-bezier(0.4, 0.0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0.0, 0.2, 1);
     
-   grid-template-columns: repeat(4, 1fr);
+   grid-template-columns: repeat(5, 1fr);
    grid-template-areas: 
-   "aa aa aa dd"
-   "bb bb bb dd"
-   "cc cc cc dd"
-   "ff ff ff ee";
+   "gg gg gg dd dd"  
+   "aa aa aa dd dd"
+   "bb bb bb dd dd"
+   "cc cc cc . ."
+   "ff ff ff ee ee";
 }
 
 .map {

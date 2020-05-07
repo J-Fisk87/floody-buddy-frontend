@@ -132,6 +132,10 @@ function displayUserLocations() {
 <div class="c6">
     <b>check out the water level </b>
 </div>
+
+<div class="c7">
+    <b> <h3>${gauge.location} </h3></b>
+</div>
 `
     
 

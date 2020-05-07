@@ -17,6 +17,13 @@
   "a b b b b . c c c d d d"
   "a b b b b . c c c d d d"
   "a b b b b . c c c d d d"
+  "a b b b b . c c c d d d"
+  "a b b b b . c c c d d d"
+  "a b b b b . c c c d d d"
+  "a b b b b . c c c d d d"
+  "a b b b b . c c c d d d"
+  "a b b b b . c c c d d d"   
+  "a b b b b . c c c d d d"
   "a b b b b . c c c d d d";
   background-color: brown;   
 }
@@ -51,7 +58,9 @@
   grid-column-end: 5; 
   grid-row-start: 4; 
   grid-row-end: 5; 
-  background-color: yellowgreen;   
+  background-color: powderblue;   
+  grid-auto-flow: column;
+  grid-auto-columns: 300px 100px;    
 }
 .box6 { 
   grid-column-start: 1;
@@ -61,22 +70,83 @@
   background-color: blanchedalmond; 
 }
 
+/*
+.loca {
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-areas: 
+  "aa aa . ee"
+  "bb bb dd dd"
+  "cc cc dd dd"
+  "ff ff ff ff";
+}
+*/
+
 .child1 {
     grid-area: a;
-    background-color: aqua
+    background-color: aqua;
 }
 
 .child2 {
     grid-area: b;
-    background-color: blueviolet
+    background-color: blueviolet;
 }
 
 .child3 {
     grid-area: c;
-    background-color:bisque
+    background-color:bisque;
 }
 
 .child4 {
     grid-area: d;
-    background-color: aquamarine
+    background-color: aquamarine;
+}
+
+.c1 {
+    grid-area: aa;
+}
+
+.c2 {
+    grid-area: bb;
+}
+
+.c3 {
+    grid-area: cc;
+}
+
+.c4 {
+    grid-area: dd;
+}
+
+.c5 {
+    grid-area: ee;
+}
+
+.c6 {
+    grid-area: ff;
+}
+
+.loca {
+   width: 300px;
+   height: 200px;
+   
+   border-radius: 0.75rem;
+   box-shadow:  0 22px 70px 4px rgba(0,0,0,0.56), 0 0 0 1px rgba(0, 0, 0, 0.3);
+   
+   background: rgb(247, 141, 20, .4);
+   
+   display: grid;
+/*   grid-template-columns: 40% auto;*/
+   color: white;
+   
+   align-items: center;
+   
+   will-change: transform;
+   transition: transform 0.25s cubic-bezier(0.4, 0.0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0.0, 0.2, 1);
+    
+   grid-template-columns: repeat(4, 1fr);
+   grid-template-areas: 
+   "aa aa . ee"
+   "bb bb bb dd"
+   "cc cc cc dd"
+   "ff ff ff ff";
 }

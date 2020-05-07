@@ -15,7 +15,7 @@ let gauges;
 document.addEventListener("DOMContentLoaded", () => {
     fetchGauges()
     fetchUsers()
-
+    closeCard()
 });
 
 // Fetch
@@ -102,23 +102,23 @@ function collapseHead(){
 //display user locations
 function displayUserLocations() {
     
-    currentUser.gauges.forEach( user => {
-    console.log(user)
+    currentUser.gauges.forEach( gauge => {
+//    let x = user.flood_stage.toFt();
     let newDiv = document.createElement('div')
     locationDiv.appendChild(newDiv)
     newDiv.className = "loca"
     newDiv.id = currentUser.id
     newDiv.innerHTML = `
 <div class="c1">
-<b>water level (ft): ${user.water_level} </b>
+<b style="color:black;">water level (ft) :</b><b> ${gauge.water_level} </b>
 </div>
 
 <div class="c2">
-<b>water flow (ft/3): ${user.water_flow} </b>
+<b style="color:black;">water flow (ft/3) :</b><b> ${gauge.water_flow} </b>
 </div>
 
 <div class="c3">
-<b>flood point (ft): ${user.flood_stage} </b>
+<b style="color:black;">flood point (ft) :</b><b> ${gauge.flood_stage.toFixed(2)} </b>
 </div>
 
 <div class="c4">
@@ -126,11 +126,11 @@ function displayUserLocations() {
 </div>
 
 <div class="c5">
-    <img id="exit_${currentUser.id}" src="./assets/x.png" alt="exit" width="40" height="40">
+    <img id="${gauge.id}" src="./assets/x.png" alt="exit" width="40" height="40">
 </div>
 
 <div class="c6">
-    <b>lskajf  jskdfl j asklf jskladjf kj djfkls </b>
+    <b>check out the water level </b>
 </div>
 `
     
@@ -138,6 +138,12 @@ function displayUserLocations() {
     });
 };
 
+function closeCard(){
+    console.log("howdy")
+    let xButton = querySelector
+}
+
 //special thanks
-//the noun project, open source icons
 //lindsey, map
+//the noun project, open source icons
+

@@ -42,6 +42,10 @@ function persistUser(user) {
     })
 }; 
 
+function removeLocation(gaugeId){
+    console.log("remove location")
+}
+
 
 //Helper Methods
 
@@ -103,44 +107,48 @@ function collapseHead(){
 function displayUserLocations() {
     
     currentUser.gauges.forEach( gauge => {
-//    let x = user.flood_stage.toFt();
     let newDiv = document.createElement('div')
     locationDiv.appendChild(newDiv)
     newDiv.className = "loca"
-    newDiv.id = currentUser.id
     newDiv.innerHTML = `
-<div class="c1">
-<b style="color:black;">water level (ft) :</b><b> ${gauge.water_level} </b>
-</div>
+    <div class="c1">
+    <b style="color:black;">water level (ft) :</b><b> ${gauge.water_level} </b>
+    </div>
 
-<div class="c2">
-<b style="color:black;">water flow (ft/3) :</b><b> ${gauge.water_flow} </b>
-</div>
+    <div class="c2">
+    <b style="color:black;">water flow (ft/3) :</b><b> ${gauge.water_flow} </b>
+    </div>
 
-<div class="c3">
-<b style="color:black;">flood point (ft) :</b><b> ${gauge.flood_stage.toFixed(2)} </b>
-</div>
+    <div class="c3">
+    <b style="color:black;">flood point (ft) :</b><b> ${gauge.flood_stage.toFixed(2)} </b>
+    </div>
 
-<div class="c4">
-    <img id="water_icon" src="./assets/1870841-200.png" alt="water level" width="90" height="90">
-</div>
+    <div class="c4">
+        <img id="water_icon" src="./assets/1870841-200.png" alt="water level" width="90" height="90">
+    </div>
 
-<div class="c5">
-    <img id="${gauge.id}" src="./assets/x.png" alt="exit" width="40" height="40">
-</div>
+    <div class="c5">
+        <img class="xbutton" id="${gauge.id}" src="./assets/x.png" alt="exit" width="40" height="40">
+    </div>
 
-<div class="c6">
-    <b>check out the water level </b>
-</div>
-`
-    
+    <div class="c6">
+        <b>check out the water level </b>
+    </div>
 
+    <div class="c7">
+        <b> <h3>${gauge.location} </h3></b>
+    </div>
+    `
     });
 };
 
 function closeCard(){
-    console.log("howdy")
-    let xButton = querySelector
+    locationDiv.addEventListener("click", (e) =>{
+        console.log(e.target)
+        currentUser.gauges.forEach( gauge => {
+       e.target.id == gauge.id ? removeLocation(gauge.id) : console.log("no guey")           
+        });
+    });
 }
 
 //special thanks

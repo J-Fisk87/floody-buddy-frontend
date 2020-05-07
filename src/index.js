@@ -1,18 +1,23 @@
-
 // Global Constants
 let url = "http://localhost:3000"
 let usersUrl = `${url}/users`
 let gaugesUrl = `${url}/gauges`
+let userGaugesUrl = `${url}/user_gauges`
 let locationDiv = document.getElementById("panic")
 let users;
+let userGauges;
 let tryAgain;
 let currentUser;
 let gauges;
+let userGaugeId;
+
+
 
 
 
 // DomContendLoaded
 document.addEventListener("DOMContentLoaded", () => {
+    fetchUserGauges()
     fetchGauges()
     fetchUsers()
     closeCard()
@@ -27,24 +32,40 @@ function fetchGauges() {
     fetch(gaugesUrl).then(r => r.json()).then(g => gauges = g)
 };
 
+function fetchUserGauges() {
+    fetch(userGaugesUrl).then(r => r.json()).then(ug => userGauges = ug)
+};
+
 function persistUser(user) {
     let id = user.id
-    fetch( usersUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      },
-        body: JSON.stringify({name: user.name, password: user.password})
-    }).then(r => r.json())
-    .then(data => {
-        console.log(data)
-    })
-}; 
+    fetch(usersUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify({
+                name: user.name,
+                password: user.password
+            })
+        }).then(r => r.json())
+        .then(data => {})
+};
 
-function removeLocation(gaugeId){
+function removeLocation(e) {
     console.log("remove location")
-}
+        fetch( `${userGaugesUrl}/${userGaugeId}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
+            body: JSON.stringify(console.log("yep"))
+        }).then(r => r.json())
+        .then(data => {
+            console.log(data)
+        })
+};
 
 
 //Helper Methods
@@ -56,16 +77,17 @@ function userLogin(c) {
     let signIn = document.getElementById("sign_in_form")
     signIn.addEventListener('submit', (e) => {
         e.preventDefault();
-        
+
         users.find(user => user.name === e.target[0].value) ?
-        succesfulSignIn(e) : alert("enserio guey... check name and password") 
-        })
-    
+            succesfulSignIn(e) : alert("enserio guey... check name and password")
+    })
+
 
     let signUp = document.getElementById("sign_up_form")
     signUp.addEventListener('submit', (e) => {
         e.preventDefault();
-        users.find(user => user.name === e.target[0].value) ? alert("this user already exists") : persist(e)    
+
+        users.find(user => user.name === e.target[0].value) ? alert("this user already exists") : persist(e)
     })
 };
 
@@ -78,39 +100,37 @@ function succesfulSignIn(e) {
 };
 
 //stage persist of user
-function persist(e){
+function persist(e) {
     let id = nextId()
     let newUser = {
         id: id,
         name: e.target[0].value,
         password: e.target[1].value
-    }  
-        users.push(newUser)
-        currentUser = newUser
-        persistUser(newUser)
-        displayUserLocations()
+    }
+    users.push(newUser)
+    currentUser = newUser
+    persistUser(newUser)
+    displayUserLocations()
 };
-
 //calculate next available user id
 function nextId() {
     let nextId = users.reduce((acc, curr) => (
         curr.id >= acc ? curr.id + 1 : acc), 1);
     return nextId
-}
+};
 
 //collapse header
-function collapseHead(){
+function collapseHead() {
     console.log("please collapse mr log")
-}   
+};
 
 //display user locations
 function displayUserLocations() {
-    
-    currentUser.gauges.forEach( gauge => {
-    let newDiv = document.createElement('div')
-    locationDiv.appendChild(newDiv)
-    newDiv.className = "loca"
-    newDiv.innerHTML = `
+    currentUser.gauges.forEach(gauge => {
+        let newDiv = document.createElement('div')
+        locationDiv.appendChild(newDiv)
+        newDiv.className = "loca"
+        newDiv.innerHTML = `
     <div class="c1">
     <b style="color:black;">water level (ft) :</b><b> ${gauge.water_level} </b>
     </div>
@@ -142,16 +162,24 @@ function displayUserLocations() {
     });
 };
 
-function closeCard(){
-    locationDiv.addEventListener("click", (e) =>{
-        console.log(e.target)
-        currentUser.gauges.forEach( gauge => {
-       e.target.id == gauge.id ? removeLocation(gauge.id) : console.log("no guey")           
+//identify card to close
+function closeCard() {
+    locationDiv.addEventListener("click", (e) => {
+        findUserGauge(e)
+        currentUser.gauges.forEach(gauge => {
+            e.target.id == gauge.id ? removeLocation() : null;
         });
     });
 }
 
+//find userGauge id
+function findUserGauge(e) {
+    let it = parseInt(e.target.id)
+    userGaugeId = userGauges.find(gge => (gge.gauge_id === it && gge.user_id === currentUser.id)).id;
+}
+
+
+
 //special thanks
 //lindsey, map
 //the noun project, open source icons
-

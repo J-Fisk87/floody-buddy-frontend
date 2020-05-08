@@ -11,6 +11,7 @@ let currentUser;
 let gauges;
 let userGaugeId;
 let x;
+let filtered;
 
 
 
@@ -31,7 +32,9 @@ function fetchUsers() {
 
 function fetchUser() {
     let cur = currentUser.id
-    fetch(`${usersUrl}/${cur}`).then(r => r.json()).then(c => currentUser = c)
+    fetch(`${usersUrl}/${cur}`).then(r => r.json()).then(c => currentUser = c);
+    locationDiv.innerHTML = "";
+    displayUserLocations()
 }
 
 function fetchGauges() {
@@ -68,7 +71,8 @@ function removeLocation(e) {
             body: JSON.stringify()
         })
             .then(r => r.json())
-            .then(data => {})
+            .then(fetchUsers())
+//            .then(data => {})
 };
 
 
@@ -107,8 +111,6 @@ function succesfulSignIn(e) {
 //stage persist of user
 function persist(e) {
     locationDiv.innerHTML = "";
-    e.target[0].value = ""
-    e.target[1].value = ""
     
     let id = nextId()
     let newUser = {
@@ -118,8 +120,10 @@ function persist(e) {
     }
     users.push(newUser);
     currentUser = newUser;
+    currentUser.gauges = [];
     persistUser(newUser);
-    displayUserLocations();
+    e.target[0].value = ""
+    e.target[1].value = ""
 };
 //calculate next available user id
 function nextId() {
@@ -169,13 +173,12 @@ function displayUserLocations() {
 //identify card to close
 function closeCard() {
     locationDiv.addEventListener("click", (e) => {
+        sliceIt(e)
         findUserGauge(e)
         currentUser.gauges.forEach(gauge => {
             e.target.id == gauge.id ? removeLocation() : null;
         });
-        locationDiv.innerHTML = "";
-        fetchUser()
-        displayUserLocations()
+        
     });
 }
 
@@ -187,8 +190,18 @@ x = userGauges.find(gge => (gge.gauge_id === it && gge.user_id === currentUser.i
 
 }
 
-
-
+function sliceIt(e){
+//    currentUser.gauges
+//    let butts = userGauges.filter(ug => ug.user_id === currentUser.id)
+//    console.log(butts)
+    
+    butts = currentUser.gauges.filter(gge => gge.id != e.target.id)
+console.log(butts)
+    
+    currentUser.gauges = butts;
+    locationDiv.innerHTML = "";
+    displayUserLocations();
+}
 
 
 

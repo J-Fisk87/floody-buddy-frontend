@@ -7,11 +7,12 @@ let e;
 
 function doThing(event){
     e = event.target.alt
-    console.log(event)
     let g = gauges.find(gauge => 
         gauge.location == event.target.alt)
+    
     userGaugesPost(g);
     currentUser.gauges.push(g)
+    locationDiv.innerHTML = "";
     displayUserLocations();
 };
 
@@ -27,6 +28,7 @@ function userGaugesPost(g) {
             user_id: currentUser.id
         })
     }).then(r => r.json())
-        .then(data => console.log(data))
+        .then(data => {})
 
 }
+

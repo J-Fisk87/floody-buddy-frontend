@@ -11,6 +11,7 @@ let currentUser;
 let gauges;
 let userGaugeId;
 let x;
+let filtered;
 
 
 
@@ -31,7 +32,9 @@ function fetchUsers() {
 
 function fetchUser() {
     let cur = currentUser.id
-    fetch(`${usersUrl}/${cur}`).then(r => r.json()).then(c => currentUser = c)
+    fetch(`${usersUrl}/${cur}`).then(r => r.json()).then(c => currentUser = c);
+    locationDiv.innerHTML = "";
+    displayUserLocations()
 }
 
 function fetchGauges() {
@@ -59,7 +62,7 @@ function persistUser(user) {
 };
 
 function removeLocation(e) {
-        fetch( `${userGaugesUrl}/${userGaugeId}`, {
+        fetch( `${userGaugesUrl}/${x}`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
@@ -68,8 +71,8 @@ function removeLocation(e) {
             body: JSON.stringify()
         })
             .then(r => r.json())
-            .then(data => { data
-        })
+            .then(fetchUsers())
+//            .then(data => {})
 };
 
 
@@ -90,7 +93,7 @@ function userLogin(c) {
     let signUp = document.getElementById("sign_up_form")
     signUp.addEventListener('submit', (e) => {
         e.preventDefault();
-
+        alert("congrats you did it")
         users.find(user => user.name === e.target[0].value) ? alert("this user already exists") : persist(e);
     })
 };
@@ -98,24 +101,29 @@ function userLogin(c) {
 //save user data upon succesful login
 function succesfulSignIn(e) {
     currentUser = users.find(user => user.name === e.target[0].value)
-    locationDiv.innerHTML = ""
-    collapseHead()
+    locationDiv.innerHTML = "";
+    e.target[0].value = ""
+    e.target[1].value = ""
     alert("you are logged in!")
     displayUserLocations()
 };
 
 //stage persist of user
 function persist(e) {
+    locationDiv.innerHTML = "";
+    
     let id = nextId()
     let newUser = {
         id: id,
         name: e.target[0].value,
         password: e.target[1].value
     }
-    users.push(newUser)
-    currentUser = newUser
-    persistUser(newUser)
-    displayUserLocations()
+    users.push(newUser);
+    currentUser = newUser;
+    currentUser.gauges = [];
+    persistUser(newUser);
+    e.target[0].value = ""
+    e.target[1].value = ""
 };
 //calculate next available user id
 function nextId() {
@@ -124,18 +132,12 @@ function nextId() {
     return nextId
 };
 
-//collapse header
-function collapseHead() {
-    console.log("please collapse mr log")
-};
-
 //display user locations
 function displayUserLocations() {
     currentUser.gauges.forEach(gauge => {
         let newDiv = document.createElement('div')
         locationDiv.appendChild(newDiv)
-        newDiv.className = "loca"
-        newDiv.innerHTML = ""
+        newDiv.className = "loca";
         newDiv.innerHTML = `
     <div class="c1">
     <b style="color:black;">water level (ft) :</b><b> ${gauge.water_level} </b>
@@ -171,23 +173,35 @@ function displayUserLocations() {
 //identify card to close
 function closeCard() {
     locationDiv.addEventListener("click", (e) => {
+        sliceIt(e)
         findUserGauge(e)
-        locationDiv.innerHTML = ""
         currentUser.gauges.forEach(gauge => {
             e.target.id == gauge.id ? removeLocation() : null;
         });
-    
-        fetchUser()
-        displayUserLocations()
+        
     });
 }
 
 //find userGauge id
 function findUserGauge(e) {
     let it = parseInt(e.target.id)
-    userGaugeId = userGauges.find(gge => (gge.gauge_id === it && gge.user_id === currentUser.id)).id;
+    
+x = userGauges.find(gge => (gge.gauge_id === it && gge.user_id === currentUser.id)).id;
+
 }
 
+function sliceIt(e){
+//    currentUser.gauges
+//    let butts = userGauges.filter(ug => ug.user_id === currentUser.id)
+//    console.log(butts)
+    
+    butts = currentUser.gauges.filter(gge => gge.id != e.target.id)
+console.log(butts)
+    
+    currentUser.gauges = butts;
+    locationDiv.innerHTML = "";
+    displayUserLocations();
+}
 
 
 
@@ -195,3 +209,4 @@ function findUserGauge(e) {
 //special thanks
 //lindsey, map
 //the noun project, open source icons
+//https://digitalsynopsis.com/advertising/we-fix-your-adverts-honest-funny-ads/

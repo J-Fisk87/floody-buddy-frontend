@@ -26,10 +26,10 @@ body {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-template-areas: 
-  "a b b b b . c c c d d d"
-  "a b b b b . c c c d d d"
-  "a b b b b . c c c d d d"
-  "a b b b b . c c c d d d"
+  "a b b b b . c c c . . ."
+  "a b b b b . c c c . . ."
+  "a b b b b . c c c . . ."
+  "a b b b b . c c c . . ."
   "a b b b b . c c c d d d"
   "a b b b b . c c c d d d"
   "a b b b b . c c c d d d"
@@ -65,6 +65,7 @@ body {
   grid-column-end: 4; 
   grid-row-start: 3; 
   grid-row-end: 4;
+  position:relative;
    
 }
 .box5 { 
@@ -188,3 +189,40 @@ body {
     max-width: 100%;
 /*    height: auto;*/
 }
+
+input[type=text] {
+  background-color: rgb(225, 245, 247, .8);
+   color: darkslategrey
+  outline: none;
+}
+
+input[type=password] {
+  background-color: rgb(225, 245, 247, .8);
+  color: darkslategrey;
+  outline: none;
+}
+
+input[type=text]:focus {
+background-color: lightblue;}
+
+input[type=password]:focus {
+background-color: lightblue;}
+
+input[type=button], input[type=submit], input[type=reset] {
+  background-color: mediumseagreen;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 1px 1px;
+  cursor: auto;
+  width: 100%
+}
+
+#ads {
+    display: grid;
+    
+    justify-self: flex-end;
+}
+
+

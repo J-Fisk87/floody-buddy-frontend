@@ -29,6 +29,11 @@ function fetchUsers() {
     fetch(usersUrl).then(r => r.json()).then(c => userLogin(c))
 };
 
+function fetchUser() {
+    let cur = currentUser.id
+    fetch(`${usersUrl}/${cur}`).then(r => r.json()).then(c => currentUser = c)
+}
+
 function fetchGauges() {
     fetch(gaugesUrl).then(r => r.json()).then(g => gauges = g)
 };
@@ -61,9 +66,9 @@ function removeLocation(e) {
             "Accept": "application/json"
           },
             body: JSON.stringify()
-        }).then(r => r.json())
-        .then(data => {
-            console.log(data)
+        })
+            .then(r => r.json())
+            .then(data => { data
         })
 };
 
@@ -73,13 +78,12 @@ function removeLocation(e) {
 //sign in and sign up
 function userLogin(c) {
     users = c
-
     let signIn = document.getElementById("sign_in_form")
     signIn.addEventListener('submit', (e) => {
         e.preventDefault();
 
         users.find(user => user.name === e.target[0].value) ?
-            succesfulSignIn(e) : alert("enserio guey... check name and password")
+            succesfulSignIn(e) : alert("enserio guey... check name and password");
     })
 
 
@@ -87,13 +91,14 @@ function userLogin(c) {
     signUp.addEventListener('submit', (e) => {
         e.preventDefault();
 
-        users.find(user => user.name === e.target[0].value) ? alert("this user already exists") : persist(e)
+        users.find(user => user.name === e.target[0].value) ? alert("this user already exists") : persist(e);
     })
 };
 
 //save user data upon succesful login
 function succesfulSignIn(e) {
     currentUser = users.find(user => user.name === e.target[0].value)
+    locationDiv.innerHTML = ""
     collapseHead()
     alert("you are logged in!")
     displayUserLocations()
@@ -130,6 +135,7 @@ function displayUserLocations() {
         let newDiv = document.createElement('div')
         locationDiv.appendChild(newDiv)
         newDiv.className = "loca"
+        newDiv.innerHTML = ""
         newDiv.innerHTML = `
     <div class="c1">
     <b style="color:black;">water level (ft) :</b><b> ${gauge.water_level} </b>
@@ -166,11 +172,12 @@ function displayUserLocations() {
 function closeCard() {
     locationDiv.addEventListener("click", (e) => {
         findUserGauge(e)
-
+        locationDiv.innerHTML = ""
         currentUser.gauges.forEach(gauge => {
             e.target.id == gauge.id ? removeLocation() : null;
         });
-        clearDivs(e)
+    
+        fetchUser()
         displayUserLocations()
     });
 }
@@ -181,10 +188,7 @@ function findUserGauge(e) {
     userGaugeId = userGauges.find(gge => (gge.gauge_id === it && gge.user_id === currentUser.id)).id;
 }
 
-function clearDivs(e){
-   x =  currentUser.gauges.find(gauge => (gauge.id === parseInt(e.target.id)))
-    console.log(x)
-}
+
 
 
 

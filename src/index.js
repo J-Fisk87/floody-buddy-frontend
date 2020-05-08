@@ -10,6 +10,7 @@ let tryAgain;
 let currentUser;
 let gauges;
 let userGaugeId;
+let x;
 
 
 
@@ -165,17 +166,24 @@ function displayUserLocations() {
 function closeCard() {
     locationDiv.addEventListener("click", (e) => {
         findUserGauge(e)
+
         currentUser.gauges.forEach(gauge => {
             e.target.id == gauge.id ? removeLocation() : null;
         });
+        clearDivs(e)
+        displayUserLocations()
     });
 }
 
 //find userGauge id
 function findUserGauge(e) {
     let it = parseInt(e.target.id)
-    console.log(e.target.id)
     userGaugeId = userGauges.find(gge => (gge.gauge_id === it && gge.user_id === currentUser.id)).id;
+}
+
+function clearDivs(e){
+   x =  currentUser.gauges.find(gauge => (gauge.id === parseInt(e.target.id)))
+    console.log(x)
 }
 
 

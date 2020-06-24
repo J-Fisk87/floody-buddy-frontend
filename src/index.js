@@ -12,7 +12,7 @@ let gauges;
 let userGaugeId;
 let x;
 let filtered;
-
+let moonshot;
 
 
 
@@ -175,7 +175,8 @@ function closeCard() {
     locationDiv.addEventListener("click", (e) => {
         sliceIt(e)
         findUserGauge(e)
-        currentUser.gauges.forEach(gauge => {
+
+        moonshot.forEach(gauge => {
             e.target.id == gauge.id ? removeLocation() : null;
         });
         
@@ -186,24 +187,23 @@ function closeCard() {
 function findUserGauge(e) {
     let it = parseInt(e.target.id)
     
-x = userGauges.find(gge => (gge.gauge_id === it && gge.user_id === currentUser.id)).id;
-
+    x = userGauges.find(gge => (gge.gauge_id === it && gge.user_id === currentUser.id)).id;
+    moonshot = userGauges.filter(gge => gge.user_id === currentUser.id)
 }
 
 function sliceIt(e){
-//    currentUser.gauges
-//    let butts = userGauges.filter(ug => ug.user_id === currentUser.id)
-//    console.log(butts)
-    
     butts = currentUser.gauges.filter(gge => gge.id != e.target.id)
-console.log(butts)
+    console.log(butts)
     
     currentUser.gauges = butts;
     locationDiv.innerHTML = "";
     displayUserLocations();
 }
 
-
+//function findUserGauges(){
+//    moonshot = userGauges.filter(gge => gge.user_id === currentUser.id)
+//    console.log("moonshot")
+//}
 
 
 //special thanks

@@ -1,14 +1,10 @@
-console.log(".js party")
 
 const map = document.getElementById("map");
-// let g;
-let e;
-
 
 function doThing(event){
-    e = event.target.alt
+    let e = event.target.alt
     let g = gauges.find(gauge => 
-        gauge.location == event.target.alt)
+        gauge.location == e)
     
     userGaugesPost(g);
     currentUser.gauges.push(g)
@@ -27,8 +23,6 @@ function userGaugesPost(g) {
             gauge_id: g.id,
             user_id: currentUser.id
         })
-    }).then(r => r.json())
-        .then(data => {})
-
+    })
 }
 

@@ -46,7 +46,6 @@ function fetchUserGauges() {
 };
 
 function persistUser(user) {
-    let id = user.id
     fetch(usersUrl, {
             method: "POST",
             headers: {
@@ -58,7 +57,6 @@ function persistUser(user) {
                 password: user.password
             })
         }).then(r => r.json())
-        .then(data => {})
 };
 
 function removeLocation(e) {
@@ -72,7 +70,6 @@ function removeLocation(e) {
         })
             .then(r => r.json())
             .then(fetchUsers())
-//            .then(data => {})
 };
 
 
@@ -86,15 +83,15 @@ function userLogin(c) {
         e.preventDefault();
 
         users.find(user => user.name === e.target[0].value) ?
-            succesfulSignIn(e) : alert("enserio guey... check name and password");
+            succesfulSignIn(e) : alert("There was an error, please check username and password");
     })
 
 
     let signUp = document.getElementById("sign_up_form")
     signUp.addEventListener('submit', (e) => {
         e.preventDefault();
-        alert("congrats you did it")
-        users.find(user => user.name === e.target[0].value) ? alert("this user already exists") : persist(e);
+        alert("User information successfully saved!")
+        users.find(user => user.name === e.target[0].value) ? alert("This user already exists") : persist(e);
     })
 };
 
@@ -104,7 +101,7 @@ function succesfulSignIn(e) {
     locationDiv.innerHTML = "";
     e.target[0].value = ""
     e.target[1].value = ""
-    alert("you are logged in!")
+    alert("You are logged in!")
     displayUserLocations()
 };
 
@@ -191,11 +188,11 @@ function findUserGauge(e) {
     moonshot = userGauges.filter(gge => gge.user_id === currentUser.id)
 }
 
-function sliceIt(e){
-    butts = currentUser.gauges.filter(gge => gge.id != e.target.id)
-    console.log(butts)
-    
-    currentUser.gauges = butts;
+
+function sliceIt(e){    
+    currentUser.gauges = currentUser.gauges.filter(
+      (gge) => gge.id != e.target.id
+    );
     locationDiv.innerHTML = "";
     displayUserLocations();
 }
@@ -207,6 +204,6 @@ function sliceIt(e){
 
 
 //special thanks
-//lindsey, map
+//Lindsay Fisk, hand-drawn map
 //the noun project, open source icons
 //https://digitalsynopsis.com/advertising/we-fix-your-adverts-honest-funny-ads/
